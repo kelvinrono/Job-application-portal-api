@@ -12,8 +12,8 @@ class UserProfile(models.Model):
     Experience = models.ForeignKey('Experience', on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return self.user
+    # def __str__(self):
+    #     return self.user
     
     class Meta:
         ordering = ['-pk']
@@ -23,12 +23,17 @@ class Academics(models.Model):
     kcse= models.CharField(max_length=50, null=True, blank=True)
     kcpe= models.CharField(max_length=50, null=True, blank=True)
 
-    # def __str__(self):
-    #     return self.academics.userProfile
+    def __str__(self):
+        return self.userProfile.user
+
+    
 
 class Certifications(models.Model):
     cert_name= models.CharField(max_length=100, null=True, blank=True)
     body= models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.cert_name
 
 class Experience(models.Model):
     organization= models.CharField(max_length=100, null=True, blank=True)
